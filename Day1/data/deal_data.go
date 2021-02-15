@@ -8,9 +8,7 @@ import (
 )
 
 func Print_arr(arr_str []string) {
-	for i, each_line := range arr_str {
-		fmt.Print(i)
-		fmt.Print(" at ")
+	for _, each_line := range arr_str {
 		fmt.Println(each_line)
 	}
 }

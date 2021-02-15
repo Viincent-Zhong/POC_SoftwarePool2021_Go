@@ -1,5 +1,10 @@
 package main
 
+import (
+	"SoftwareGoDay1/humanity"
+	"fmt"
+)
+
 func main() {
 	// Exo 1, part 1: Lire un fichier
 	/*arr_str, err := data.ReadFile((os.Args[1]))
@@ -36,4 +41,12 @@ func main() {
 	// Exo 3 : Formatter le code
 	/* Je crois que vscode le fait automatiquement*/
 	// Exo 4 : Test en go
+	// Exo 5 : créer des pilotes
+	fmt.Println(&humanity.Pilot{&humanity.Human{"Jason", 10, "Fr", false}})
+	//human := humanity.Human{"Jason", 10, "Fr"}
+	//fmt.Println(human.String())
 }
+
+/*func (h *Human) String() string {
+
+}*/

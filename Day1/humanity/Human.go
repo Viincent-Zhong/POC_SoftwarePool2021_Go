@@ -4,6 +4,7 @@ import (
 	"SoftwareGoDay1/data"
 	"encoding/json"
 	"errors"
+	"fmt"
 	"io/ioutil"
 	"log"
 	"strconv"
@@ -13,6 +14,22 @@ type Human struct {
 	Name    string
 	Age     int
 	Country string
+	Ready   bool
+}
+
+func (hums *Human) String() string {
+	/*var str string
+	str = Join(hums.String(), ",")*/
+	//return hums.String()
+	return fmt.Sprintf("%v (%v years) %v", hums.Name, hums.Age, hums.Country)
+}
+
+func (h *Human) Prepare() error {
+	h.Ready = true
+	if h.Ready == true {
+		fmt.Sprintf("is ready !")
+	}
+	return nil
 }
 
 func NewHumanFromCSV(csv []string) *Human {
@@ -20,7 +37,7 @@ func NewHumanFromCSV(csv []string) *Human {
 	if err != nil {
 		log.Fatalf("probleme convert")
 	}
-	human := Human{csv[0], age, csv[2]}
+	human := Human{csv[0], age, csv[2], false}
 	return &human
 }
 

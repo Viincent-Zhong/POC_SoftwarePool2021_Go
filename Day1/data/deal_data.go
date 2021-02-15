@@ -2,6 +2,7 @@ package data
 
 import (
 	"bufio"
+	"errors"
 	"fmt"
 	"os"
 	"strings"
@@ -13,9 +14,13 @@ func Print_arr(arr_str []string) {
 	}
 }
 
-func LineToCSV(line string) []string {
+func LineToCSV(line string) ([]string, error) {
 	str := strings.Split(line, ",")
-	return str
+
+	if str[0] == line {
+		return str, errors.New("need coma")
+	}
+	return str, nil
 }
 
 func ReadFile(path string) ([]string, error) {

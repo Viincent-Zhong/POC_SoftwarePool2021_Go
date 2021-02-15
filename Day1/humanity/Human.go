@@ -3,6 +3,7 @@ package humanity
 import (
 	"SoftwareGoDay1/data"
 	"encoding/json"
+	"errors"
 	"io/ioutil"
 	"log"
 	"strconv"
@@ -23,7 +24,7 @@ func NewHumanFromCSV(csv []string) *Human {
 	return &human
 }
 
-func NewHumansFromCsvFile(path string) []*Human {
+func NewHumansFromCsvFile(path string) ([]*Human, error) {
 	arr_str, err := data.ReadFile(path)
 	human_arr := []*Human{}
 
@@ -32,16 +33,23 @@ func NewHumansFromCsvFile(path string) []*Human {
 	}
 	for _, each_line := range arr_str {
 		human := new(Human)
-		human = NewHumanFromCSV(data.LineToCSV(each_line))
+		str, err := data.LineToCSV(each_line)
+		if err != nil {
+			return human_arr, errors.New("error")
+		}
+		human = NewHumanFromCSV(str)
 		human_arr = append(human_arr, human)
 	}
-	return human_arr
+	return human_arr, nil
 }
 
-func NewHumansFromJsonFile(path string) []*Human {
-	file, _ := ioutil.ReadFile(path)
+func NewHumansFromJsonFile(path string) ([]*Human, error) {
+	file, err := ioutil.ReadFile(path)
 	human_arr := []*Human{}
 
-	_ = json.Unmarshal([]byte(file), &human_arr)
-	return human_arr
+	err = json.Unmarshal([]byte(file), &human_arr)
+	if err != nil {
+		return human_arr, err
+	}
+	return human_arr, nil
 }

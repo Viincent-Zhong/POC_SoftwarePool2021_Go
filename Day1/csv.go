@@ -16,6 +16,7 @@ func main() {
 	/*human := humanity.NewHumanFromCSV(data.LineToCSV(arr_str[0]))
 	fmt.Println(human)*/
 	human_arr := humanity.NewHumansFromCsvFile(os.Args[1])
-	fmt.Println(human_arr[0])
-	fmt.Println(human_arr[1])
+	for _, each_line := range human_arr {
+		fmt.Println(each_line)
+	}
 }

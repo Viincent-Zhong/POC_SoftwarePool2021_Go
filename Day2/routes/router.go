@@ -20,7 +20,14 @@ func handle_query(c *gin.Context) {
 	if erri == false || errn == false {
 		return
 	}
-	c.String(http.StatusOK, fmt.Sprintf("id: %v, name: %v", id, name))
+	var s_query struct {
+		Id   string
+		Name string
+	}
+	s_query.Id = id
+	s_query.Name = name
+	c.JSON(http.StatusOK, s_query)
+	//c.String(http.StatusOK, fmt.Sprintf("id: %v, name: %v", id, name))
 }
 
 func handle_param(c *gin.Context) {

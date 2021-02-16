@@ -3,6 +3,9 @@ package main
 import (
 	"SoftwareGoDay2/routes"
 	"SoftwareGoDay2/server"
+	"log"
+
+	"github.com/joho/godotenv"
 )
 
 //Test avec http
@@ -15,6 +18,10 @@ import (
 
 //Test avec gin
 func main() {
+	err := godotenv.Load("setup_env.env")
+	if err != nil {
+		log.Fatalf("Error loading .env file")
+	}
 	router := server.NewServer()
 	routes.ApplyRoutes(router.App)
 	router.App.Run(":8080")

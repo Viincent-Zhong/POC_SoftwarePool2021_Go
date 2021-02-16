@@ -20,12 +20,17 @@ func handle_query(c *gin.Context) {
 	if erri == false || errn == false {
 		return
 	}
-	c.String(http.StatusOK, fmt.Sprintf("id %v, name %v", id, name))
+	c.String(http.StatusOK, fmt.Sprintf("id: %v, name: %v", id, name))
 }
 
 func handle_param(c *gin.Context) {
-	id := c.Param("id")
-	c.String(http.StatusOK, id)
+	name := c.Params.ByName("message")
+	if name == "" {
+		return
+	}
+	c.String(http.StatusOK, name)
+	/*id := c.Param("id")
+	c.String(http.StatusOK, id)*/
 }
 
 func handle_header(c *gin.Context) {

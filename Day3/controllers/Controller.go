@@ -23,3 +23,15 @@ func GetDeveloper(db *gorm.DB, id int) (dev []models.Developer) {
 	fmt.Println(dev)
 	return
 }
+
+func UpdateDeveloper(db *gorm.DB, id int, column string, change string) (dev []models.Developer) {
+	db.Model(&models.Developer{}).Where(id).Update(column, change)
+	GetDeveloper(db, id)
+	return
+}
+
+func DeleteDeveloper(db *gorm.DB, id int) (dev []models.Developer) {
+	db.Model(&models.Developer{}).Where(id).Delete(id)
+	GetDevelopers(db)
+	return
+}

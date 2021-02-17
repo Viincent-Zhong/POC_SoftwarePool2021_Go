@@ -22,5 +22,10 @@ func main() {
 	fmt.Println("Database my_database is ready ")
 	controllers.CreateDeveloper("Boug", "12", "epitech", "jesuistropfort", db.DB)
 	controllers.GetDevelopers(db.DB)
-	controllers.GetDeveloper(db.DB, 1)
+	fmt.Printf("\n\n\n")
+	controllers.GetDeveloper(db.DB, 3)
+	fmt.Printf("\n\n\n")
+	controllers.UpdateDeveloper(db.DB, 3, "Name", "revien")
+	fmt.Printf("\n\n\n")
+	controllers.DeleteDeveloper(db.DB, 12)
 }

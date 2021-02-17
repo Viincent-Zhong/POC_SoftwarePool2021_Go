@@ -27,5 +27,7 @@ func main() {
 	fmt.Printf("\n\n\n")
 	controllers.UpdateDeveloper(db.DB, 3, "Name", "revien")
 	fmt.Printf("\n\n\n")
-	controllers.DeleteDeveloper(db.DB, 12)
+	controllers.DeleteDeveloper(db.DB, 13)
+	fmt.Printf("\n\n\n")
+	controllers.GetDevelopers(db.DB)
 }

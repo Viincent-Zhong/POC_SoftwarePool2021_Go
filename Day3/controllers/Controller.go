@@ -1,6 +1,7 @@
 package controllers
 
 import (
+	"SoftwareGoDay3/database"
 	"SoftwareGoDay3/models"
 	"fmt"
 
@@ -30,8 +31,9 @@ func UpdateDeveloper(db *gorm.DB, id int, column string, change string) (dev []m
 	return
 }
 
-func DeleteDeveloper(db *gorm.DB, id int) (dev []models.Developer) {
-	db.Model(&models.Developer{}).Where(id).Delete(id)
-	GetDevelopers(db)
+func DeleteDeveloper(db *database.Database, id int) {
+	dev := models.Developer{}
+	dev.ID = uint(id)
+	dev.Delete(db.DB)
 	return
 }
